@@ -1,0 +1,60 @@
+%\documentclass[table]{beamer}
+%\usepackage[space,noindent]{ctex}
+%%\usecolortheme{crane}
+%\usetheme{Madrid}
+%\useinnertheme[shadow]{rounded}
+%\usepackage[timeinterval=1]{tdclock} %设置数字时钟的宏包
+%\beamersetaveragebackground{black!10}
+%\setbeamertemplate{theorems}[numbered]
+%%\setbeamertemplate{footline}[page number] %将底边导航条中的帧码计数改为页码计数
+%\renewcommand{\tablename}{表}
+%
+%
+%
+%\begin{document}
+%
+\begin{frame}{3.12000min分位数因子}
+\begin{equation}\label{pct12000_reg}
+  \Delta{A_{t+240}}=Pct_{12000,t}\beta
+\end{equation}
+\begin{equation}\label{pct12000}
+  Pct_{12000,t}=Card(A_{s}>A_t),\forall s \in 1,...,12000
+\end{equation}
+
+\end{frame}
+\begin{frame}{3.12000min分位数因子}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{12000min分位数效果检测}
+\begin{tabular}{ll}
+95\%分位数 &  [0.0029,0.0047]\\
+P-value &0\\
+F-value & 285.3\\
+R-sqaure& 0.0083\\
+上阈值&0.001\\
+下阈值&-0.001
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{3.12000min分位数因子}
+\includegraphics<1>[width=\textwidth]{pct12000.jpg}
+\end{frame}
+
+\begin{frame}{3.12000min分位数因子}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{12000min分位数统计特性}
+
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+产生信号次数 & 7211.0 & 8511.0 & 15722\\ 每次收益 & 0.000813 & 0.000916 & 0.000869\\ 盈利次数&3477.0 & 5033.0 & 8500.0\\ 标准差&0.0134 & 0.00906 & 0.0112\\ 峰度& 0.576 & -1.85 & -0.0847 \\ 偏度 & 3.87&	13.41&6.60
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+%\end{document}
+

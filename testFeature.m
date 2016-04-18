@@ -1,0 +1,47 @@
+function [B,BINT,STATS,M,struct_a]=testFeature(tag,x,name,upper_critical)
+    n=size(tag,1);
+    idx=linspace(1,n,n);
+    lower_critical=-upper_critical;
+    [B,BINT,R,RINT,STATS] = regress(tag,[x,ones(n,1)]);
+    pred=[x,ones(n,1)]*B;
+    long=tag(pred>upper_critical);
+    long=long(~isnan(long));
+    p=STATS(1);
+    short=tag(pred<lower_critical);
+    short=-short(~isnan(short));
+    long_ret=sum(long);
+    long_count=size(long,1);
+    short_ret=sum(short);
+    short_count=size(short,1);
+    tot=[long;short];
+    signal=-(pred<lower_critical)+(pred>upper_critical);
+    signal=0.05*signal(~isnan(signal));
+    profitlong=sum(long>0);
+    profitshort=sum(short>0);
+    jpg=plot(idx,tag,idx,signal);
+    saveas(gcf,[name,'.jpg'],'jpg');
+    M(1,1)=long_count;
+    M(1,2)=short_count;
+    M(1,3)=M(1,1)+M(1,2);
+    M(2,1)=mean(long);
+    M(2,2)=mean(short);
+    M(2,3)=mean(tot);
+    M(3,1)=profitlong;
+    M(3,2)=profitshort;
+    M(3,3)=profitlong+profitshort;
+    M(4,1)=std(long);
+    M(4,2)=std(short);
+    M(4,3)=std(tot);
+    M(5,1)=skewness(long,1);
+    M(5,2)=skewness(short,1);
+    M(5,3)=skewness(tot,1);
+    M(6,1)=kurtosis(long,0);
+    M(6,2)=kurtosis(short,0);
+    M(6,3)=kurtosis(tot,0);
+    struct_a.BINT=BINT;
+    struct_a.STATS=STATS;
+    struct_a.M=M;
+    signal=-(pred<lower_critical)+(pred>upper_critical);
+    struct_a.signal=signal;
+    
+end

@@ -1,0 +1,149 @@
+\documentclass[table]{beamer}
+\usepackage[space,noindent]{ctex}
+%\usecolortheme{crane}
+\usetheme{Madrid}
+\useinnertheme[shadow]{rounded}
+\usepackage[timeinterval=1]{tdclock} %设置数字时钟的宏包
+\beamersetaveragebackground{black!10}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{footline}[page number] %将底边导航条中的帧码计数改为页码计数
+\renewcommand{\tablename}{表}
+\begin{document}
+
+\subtitle{睡眠质量识别}
+\date[\initclock\tdtime]{\today}
+\maketitle
+\newtheorem{THeorem}{定理}
+\newtheorem{DEfinition}{定义}
+\newtheorem{PRoof}{证明}
+\theoremstyle{example}
+\newtheorem{EXemple}{示例}
+\begin{frame}{定理类模块}
+\begin{DEfinition}
+有一个角是直角的三角形称为直角三角形。
+\end{DEfinition}
+\begin{THeorem}
+直角三角的斜边平方等于另两个边平方之和。
+\end{THeorem}
+\begin{PRoof}
+画一条通过点A和点B的线段a。\dots\\ 这就证明了一个三角形的内角之和等于180度。\qed
+\end{PRoof}
+\begin{EXemple}
+$3x^{3}+2^{2}+x+1=0$
+\end{EXemple}
+\end{frame}
+
+\begin{frame}{三种色调的文本模块}
+\begin{block}{基本性质}
+$\frac{a}{b}=\frac{am}{bm}$
+\end{block}
+\begin{exampleblock}{举例}
+$\frac{a}{b}\cdot\frac{c}{d}=\frac{ac}{bd}$
+\end{exampleblock}
+\begin{alertblock}{\heiti 注意！}
+在分式中，分母不能为零。
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{彩色盒子}
+\setbeamercolor{mycolor}{fg=black,bg=pink}
+如果正整数 $x,y,z$ 能够满足下列不定方程：\\
+\centerline{\begin{beamercolorbox}[rounded=true,shadow=true,wd=26mm]{mycolor}
+$x^{2}+y^{2}=z^{2}$ \end{beamercolorbox}}
+则它们叫做勾股定理。\\[20pt]
+圆周率
+\hspace{2pt}\raisebox{-2mm}{\begin{beamercolorbox}[rounded=true,shadow=true,wd=19mm]{mycolor}
+$\pi=3.14$\end{beamercolorbox}}
+\hspace{3pt}
+是圆周与直径之比。
+\end{frame}
+
+\begin{frame}{圆角盒子}
+\setbeamercolor{myupcol}{fg=white,bg=purple}
+\setbeamercolor{mylowcol}{fg=black,bg=pink}
+在1673年，法国数学家费马提出：
+\begin{beamerboxesrounded}[upper=myupcol,lower=mylowcol,shadow=true]{费马猜想}
+当~$n$是一个大于~2 的整数时，则\\
+\centerline{$x^{n}+y^{n}=z^{n}$}\\
+这个不定方程没有正整数解。
+\end{beamerboxesrounded}
+1995 年英国数学家贝尔斯用反证法证明了费马猜想完全可以成立。
+\end{frame}
+
+\begin{frame}{列表的应用举例}
+\begin{block}{开普勒定律}
+%\setbeamercovered{transparent}  %插入半透明命令
+\begin{enumerate}
+\item<1-> 行星绕太阳运动的轨道是以太阳为焦点的椭圆。
+%\pause   %暂停命令
+\item<2-> 行星与太阳的连线在相等时间内扫过相等的面积。
+%\pause
+\item<3-> 不同行星在其轨道上公转周期的平方与轨道半长径的立方成正比。
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{表格} \kaishu
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{各种移动通信系统的比较}
+\begin{tabular}{llll}
+~ &2G &2.5G &3G \\
+信号类型 & 模拟 &数字 &数字 \\
+交换方式 & 电路交换 &分组交换 &分组交换 \\
+提供服务 & 短信 &网络 &多媒体 \\
+传输速率 &14 \:Kb & 144\:Kb &2\:000\:Kb
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{将一帧分为两栏}
+
+
+\texttt{columns}环境可以将一帧分成多栏，通常为两栏，这样便于在插图旁边放置说明文字。
+\begin{columns}[onlytextwidth]
+\begin{column}{0.55\textwidth} \includegraphics[width=\columnwidth]{2.jpg}
+\end{column}
+
+
+
+\begin{column}{0.45\textwidth}
+左图是微带线四周电场与磁场的分布情况，其中：
+\begin{itemize}
+\item 红线为磁力线
+\item 蓝色是电力线
+\item 刻度单位为毫米
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{C 语言程序}
+\begin{semiverbatim}
+\uncover<1->{\alert<1>{if(x>=0)}}
+\uncover<2->{\alert<2>{ if(x>=0) y=1;}}
+\uncover<3->{\alert<3>{else y=-1}}
+\end{semiverbatim}
+\end{frame}
+
+\begin{frame}{在一帧幻灯片中逐一变换3幅图片}
+\includegraphics<1>[width=\textwidth]{2.jpg}
+\includegraphics<2>[width=0.7\textwidth]{2.jpg}
+\includegraphics<3>[width=\textwidth]{2.jpg}
+\end{frame}
+
+\begin{frame}{参考文献}
+\begin{thebibliography}{10}
+\beamertemplatebookbibitems
+\bibitem{Suyi}苏伊.{\heiti 天文学新论}.
+\newblock 华中理工大学出版社.2000.
+\beamertemplatearticlebibitems
+\bibitem{Lebow}Lebow Irwin
+\newblock{\em Information Highways ...}.
+\newblock IEEE Press. New York. 1995.
+\end{thebibliography}
+\end{frame}
+
+\end{document}
+

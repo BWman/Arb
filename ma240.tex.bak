@@ -1,0 +1,51 @@
+\documentclass[table]{beamer}
+\usepackage[space,noindent]{ctex}
+%\usecolortheme{crane}
+\usetheme{Madrid}
+\useinnertheme[shadow]{rounded}
+\usepackage[timeinterval=1]{tdclock} %设置数字时钟的宏包
+\beamersetaveragebackground{black!10}
+\setbeamertemplate{theorems}[numbered]
+%\setbeamertemplate{footline}[page number] %将底边导航条中的帧码计数改为页码计数
+\renewcommand{\tablename}{表}
+
+
+
+\begin{document}
+
+\begin{frame}{2.240min均线因子}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{240min均线效果检测}
+\begin{tabular}{ll}
+95\%分位数 &  [-0.0482,-0.00436]\\
+P-value &0\\
+F-value & 1523.3\\
+R-sqaure& 0.027\\
+上阈值&0.003\\
+下阈值&-0.003
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{2.240min均线因子}
+\includegraphics<1>[width=\textwidth]{ma240.jpg}
+\end{frame}
+
+\begin{frame}{2.240min均线因子}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{240min均线统计特性}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+产生信号次数 & 979.0 & 3700.0 & 4688.0\\每次收益 & 0.00199 & 0.0035 & 0.00318\\ 盈利次数&445.0 & 2300.0 & 2733.0\\ 峰度&0.0124 & 0.0138 & 0.0135\\偏度& 0.73 & 0.343 & 0.417
+
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\end{document}
+

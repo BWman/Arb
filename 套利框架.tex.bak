@@ -1,0 +1,49 @@
+\documentclass[cjk]{beamer}
+\usepackage{CJKutf8}
+\usepackage{graphics}
+\usetheme{Warsaw}
+\begin{document}
+\begin{CJK*}{UTF8}{gbsn}
+%%------------------------------------------
+\title{市场营销原理}
+\author{某某某}\\
+\ homework.tchou@gmail.com}
+\institute{某个学校的名称}
+\titlegraphic{\includegraphics[height=0.20\textwidth]{top.jpg}}
+%%------------------------------------------
+\begin{frame}
+\titlepage
+\begin{table}[!hbp]
+
+
+\begin{tabular}{|c|c|c|c|c|}
+
+
+\hline
+
+
+\hline
+
+
+lable 1-1 & label 1-2 & label 1-3 & label 1 -4 & label 1-5 \\
+
+
+\hline
+
+
+label 2-1 & label 2-2 & label 3-3 & label 4-4 & label 5-5 \\
+
+
+\hline
+
+
+\end{tabular}
+
+
+\caption{example of table}
+
+
+\end{table}
+
+\end{frame}
+%%------------------------------------------
