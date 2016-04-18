@@ -1,21 +1,34 @@
-function [B,BINT,STATS,M,struct_a]=testFeature(tag,x,name,upper_critical)
+function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,name,upper_critical,u,v)
+   tag=tag(u:v);
+    x=x(u:v,:);
     n=size(tag,1);
     idx=linspace(1,n,n);
     lower_critical=-upper_critical;
-    [B,BINT,R,RINT,STATS] = regress(tag,[x,ones(n,1)]);
-    pred=[x,ones(n,1)]*B;
-    long=tag(pred>upper_critical);
+    
+    [Z,MU,SIGMA] = zscore(x); 
+    %[B,BINT,R,RINT,STATS] = regress(tag,[Z,ones(n,1)]);
+     [B,S] = lasso([Z,ones(n,1)],tag,'Lambda',0.0000001);
+    pred=([Z,ones(n,1)]*B);
+    
+
+    %[B,BINT,R,RINT,STATS] = regress(tag,[x,ones(n,1)]);
+    %pred=([x,ones(n,1)]*B);
+     signal=-(pred<lower_critical)+(pred>upper_critical);
+    for i=1:size(signal,1)-1
+        if signal(n-i+1)~=0 && signal(n-i)~=0
+            signal(n-i+1)=0;
+        end
+    end
+    long=tag(signal==1);
     long=long(~isnan(long));
-    p=STATS(1);
-    short=tag(pred<lower_critical);
+    %p=STATS(1);
+    short=tag(signal==-1);
     short=-short(~isnan(short));
     long_ret=sum(long);
     long_count=size(long,1);
     short_ret=sum(short);
     short_count=size(short,1);
     tot=[long;short];
-    signal=-(pred<lower_critical)+(pred>upper_critical);
-    signal=0.05*signal(~isnan(signal));
     profitlong=sum(long>0);
     profitshort=sum(short>0);
     jpg=plot(idx,tag,idx,signal);
@@ -38,10 +51,18 @@ function [B,BINT,STATS,M,struct_a]=testFeature(tag,x,name,upper_critical)
     M(6,1)=kurtosis(long,0);
     M(6,2)=kurtosis(short,0);
     M(6,3)=kurtosis(tot,0);
-    struct_a.BINT=BINT;
-    struct_a.STATS=STATS;
+  %  struct_a.BINT=BINT;
+    struct_a.S=S;
     struct_a.M=M;
-    signal=-(pred<lower_critical)+(pred>upper_critical);
+    %signal=-(pred<lower_critical)+(pred>upper_critical);
     struct_a.signal=signal;
+    struct_a.mu=MU;
+    struct_a.sigma=SIGMA;
+    struct_a.B=B;
     
+    validation_odd=0;
+    for i=1:size(signal,1)-1
+        validation_odd=validation_odd+(signal(i)*signal(i+1));
+    end
+ 
 end
