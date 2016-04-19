@@ -1,4 +1,4 @@
-function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,name,upper_critical,u,v)
+function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,benchmark,upper_critical,u,v)
     tag=tag(u:v);
     x=x(u:v,:);
     n=size(tag,1);
@@ -7,7 +7,7 @@ function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,name,upper_critical,u
     
     [Z,MU,SIGMA] = zscore(x); 
     %[B,BINT,R,RINT,STATS] = regress(tag,[Z,ones(n,1)]);
-     [B,S] = lasso([Z,ones(n,1)],tag,'Lambda',0.0000001);
+     [B,S] = lasso([Z,ones(n,1)],tag,'Lambda',0.0001);
     pred=([Z,ones(n,1)]*B);
     
 
@@ -31,8 +31,10 @@ function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,name,upper_critical,u
     tot=[long;short];
     profitlong=sum(long>0);
     profitshort=sum(short>0);
-    jpg=plot(idx,tag,idx,signal);
-    saveas(gcf,[name,'.jpg'],'jpg');
+    jpg=plot(idx,benchmark(u:v),idx,(signal<0).*benchmark(u:v),'*g',idx,(signal>0).*benchmark(u:v),'*r');
+    saveas(gcf,['trainSignal.jpg'],'jpg');
+    jpg=plot(idx,tag,idx,(signal<0).*tag,'*g',idx,(signal>0).*tag,'*r');
+    saveas(gcf,['trainReturn.jpg'],'jpg');
     M(1,1)=long_count;
     M(1,2)=short_count;
     M(1,3)=M(1,1)+M(1,2);
