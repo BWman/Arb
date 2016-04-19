@@ -1,5 +1,5 @@
 function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,name,upper_critical,u,v)
-   tag=tag(u:v);
+    tag=tag(u:v);
     x=x(u:v,:);
     n=size(tag,1);
     idx=linspace(1,n,n);

@@ -1,7 +1,12 @@
-function M=generate_model(tag,x,struct_a,upper_critical,u,v);
-    tag=tag(u:v);
-    x=x(u:v,:);
+function [M,M0,struct_a]=generate_model(tag,x,upper_critical)
     n=size(tag,1);
+    [~,~,M0,struct_a,~]=testFeature(tag,x,'default',upper_critical,1,n/2);
+    u=n/2+1;
+    v=n;
+    n=v-u+1;
+    tag=tag(u:v);
+    x=[x(u:v,:)];
+    
     idx=linspace(1,n,n);
     lower_critical=-upper_critical;
     for j=1:size(x,2)
@@ -27,16 +32,16 @@ function M=generate_model(tag,x,struct_a,upper_critical,u,v);
     %p=STATS(1);
     short=tag(signal==-1);
     short=-short(~isnan(short));
-    long_ret=sum(long);
+    %long_ret=sum(long);
     long_count=size(long,1);
-    short_ret=sum(short);
+    %short_ret=sum(short);
     short_count=size(short,1);
     tot=[long;short];
    
     signal=0.05*signal(~isnan(signal));
     profitlong=sum(long>0);
     profitshort=sum(short>0);
-    jpg=plot(idx,tag,idx,signal);
+    %jpg=plot(idx,tag,idx,signal);
     %saveas(gcf,[name,'.jpg'],'jpg');
     M(1,1)=long_count;
     M(1,2)=short_count;
