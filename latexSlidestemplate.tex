@@ -83,16 +83,147 @@ R-sqaure& 0.027\\
 \begin{tabular}{llll}
 ~&做多&做空&合计\\
 
-产生信号次数 &1244.0 & 4700.0 & 5944.0\\每次收益 & 0.00353 & 0.00368 & 0.00365\\ 盈利次数&622.0 & 3088.0 & 3700.0\\ 标准差&0.0126 & 0.0126 & 0.0126\\ 偏度& 0.601 & 0.352 & 0.404\\峰度& 2.25 & 3.64 & 3.34
+产生信号次数 &1244.0 & 4700.0 & 5944.0\\每次收益 & 0.00353 & 0.00368 & 0.00365\\ 盈利次数&622.0 & 3088.0 & 3700.0\\ 标准差&0.0126 & 0.0126 & 0.0126\\ 偏度& 0.601 & 0.352 & 0.404\\ 峰度& 2.25 & 3.64 & 3.34
 \end{tabular}
 \end{table}
 \end{frame}
 
 
 
+
 \include{ma240}
 
 \include{pct12000}
+
+
+\begin{frame}{1.自回归因子}
+\begin{equation}\label{autoregress_formula}
+  \Delta{A_{t+240}}=A_{t}\beta
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{IF02-IF01数据}
+\begin{itemize}
+  \item 训练样本:13年5月-14年10月
+
+  \item 测试样本:14年11月-16年4月
+  
+  \item 信号预测30分钟后收益率
+  
+  \item 以下两个图分别代表交易信号和每次交易收益。红色代表做多价差，绿色代表做空价差。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{IF上效果:训练样本}
+\includegraphics<1>[width=\textwidth]{IFtrainSignal.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:训练样本}
+\includegraphics<1>[width=\textwidth]{IFtrainReturn.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:训练样本}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IF上效果:训练样本}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数
+& 214.0 & 255.0 & 469.0\\ 每次收益 & 0.000519 & 0.0004744 & 0.0004947\\盈利次数& 151.0 & 155.0 & 306.0\\ 标准差& 0.002068 & 0.001803 & 0.001927\\ 偏度& -0.1407 & 1.929 & 0.7828\\ 峰度& 12.84 & 11.78 & 12.48 
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{IF上效果:测试样本}
+\includegraphics<1>[width=\textwidth]{IFtestSignal.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:测试样本}
+\includegraphics<1>[width=\textwidth]{IFtestReturn.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:测试样本}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IF上效果:测试样本}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数 &1517.0 & 1555.0 & 3072.0\\每次收益 &  0.001061 & 0.001042 & 0.001051\\盈利次数& 1124.0 & 1191.0 & 2315.0\\ 标准差&0.003424 & 0.002555 & 0.003015\\偏度& -2.215 & -1.699 & -2.122\\峰度&  37.55 & 17.24 & 35.25
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}{IF04-IF03数据}
+\begin{itemize}
+  \item 训练样本:13年5月-14年10月
+
+  \item 测试样本:14年11月-16年4月
+  
+  \item 交易品种:IF最远月合约和当季合约
+
+  \item 信号预测30分钟后收益率
+
+  \item 以下两个图分别代表交易信号和每次交易收益。红色代表做多价差，绿色代表做空价差。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{IF上效果:训练样本}
+\includegraphics<1>[width=\textwidth]{ItrainSignal.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:训练样本}
+\includegraphics<1>[width=\textwidth]{ItrainReturn.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:训练样本}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IF上效果:训练样本}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数
+ & 193.0 & 165.0 & 358.0\\每次收益 & 0.001429 & 0.001493 & 0.001458\\盈利次数& 177.0 & 154.0 & 331.0\\标准差& 0.001085 & 0.0009134 & 0.001009\\偏度&  0.2272 & -0.4093 & -0.00359\\峰度& 4.537 & 4.03 & 4.434 
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{IF上效果:测试样本}
+\includegraphics<1>[width=\textwidth]{ItestSignal.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:测试样本}
+\includegraphics<1>[width=\textwidth]{ItestReturn.jpg}
+\end{frame}
+
+\begin{frame}{IF上效果:测试样本}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IF上效果:测试样本}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数 &
+3062.0 & 3029.0 & 6091.0\\ 每次收益 & 0.002073 & 0.002102 & 0.002087\\盈利次数&  2492.0 & 2484.0 & 4976.0\\标准差& 0.003103 & 0.002923 & 0.003015\\偏度& 0.4042 & -0.2176 & 0.122\\ 峰度&  25.02 & 12.81 & 19.72 
+
+\end{tabular}
+\end{table}
+\end{frame}
 %
 %\begin{frame}{三种色调的文本模块}
 %\begin{block}{基本性质}

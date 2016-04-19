@@ -31,9 +31,9 @@ function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,benchmark,upper_criti
     tot=[long;short];
     profitlong=sum(long>0);
     profitshort=sum(short>0);
-    jpg=plot(idx,benchmark(u:v),idx,(signal<0).*benchmark(u:v),'*g',idx,(signal>0).*benchmark(u:v),'*r');
+    jpg=plot(idx,benchmark(u:v),idx,(signal<0).*benchmark(u:v),'.g',idx,(signal>0).*benchmark(u:v),'.r');
     saveas(gcf,['trainSignal.jpg'],'jpg');
-    jpg=plot(idx,tag,idx,(signal<0).*tag,'*g',idx,(signal>0).*tag,'*r');
+    jpg=plot(idx,tag,idx,(signal<0).*tag,'.g',idx,(signal>0).*tag,'.r');
     saveas(gcf,['trainReturn.jpg'],'jpg');
     M(1,1)=long_count;
     M(1,2)=short_count;

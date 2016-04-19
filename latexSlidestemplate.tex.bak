@@ -83,16 +83,46 @@ R-sqaure& 0.027\\
 \begin{tabular}{llll}
 ~&做多&做空&合计\\
 
-产生信号次数 &1244.0 & 4700.0 & 5944.0\\每次收益 & 0.00353 & 0.00368 & 0.00365\\ 盈利次数&622.0 & 3088.0 & 3700.0\\ 峰度&0.0126 & 0.0126 & 0.0126\\ 偏度& 0.601 & 0.352 & 0.404
+产生信号次数 &1244.0 & 4700.0 & 5944.0\\每次收益 & 0.00353 & 0.00368 & 0.00365\\ 盈利次数&622.0 & 3088.0 & 3700.0\\ 标准差&0.0126 & 0.0126 & 0.0126\\ 偏度& 0.601 & 0.352 & 0.404\\ 峰度& 2.25 & 3.64 & 3.34
 \end{tabular}
 \end{table}
 \end{frame}
 
 
 
+
 \include{ma240}
 
 \include{pct12000}
+
+
+\begin{frame}{1.自回归因子}
+\begin{equation}\label{autoregress_formula}
+  \Delta{A_{t+240}}=A_{t}\beta
+\end{equation}
+
+\end{frame}
+
+
+
+\begin{frame}{IF上效果}
+\includegraphics<1>[width=\textwidth]{IFtrainSignal.jpg}
+\end{frame}
+
+
+\begin{frame}{IF上效果}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IF上效果}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数 &1517.0 & 1555.0 & 3072.0\\每次收益 &  0.001061 & 0.001042 & 0.001051\\盈利次数& 1124.0 & 1191.0 & 2315.0\\ 标准差&0.003424 & 0.002555 & 0.003015\\偏度& -2.215 & -1.699 & -2.122\\峰度&  37.55 & 17.24 & 35.25
+>>
+\end{tabular}
+\end{table}
+\end{frame}
 %
 %\begin{frame}{三种色调的文本模块}
 %\begin{block}{基本性质}
