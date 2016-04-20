@@ -224,6 +224,68 @@ R-sqaure& 0.027\\
 \end{tabular}
 \end{table}
 \end{frame}
+
+
+
+\begin{frame}{IC04-IC03数据}
+\begin{itemize}
+  \item 训练样本:15年4月-15年10月
+
+  \item 测试样本:14年10月-16年4月
+
+  \item 交易品种:IC最远月合约和当季合约
+
+  \item 信号预测30分钟后收益率
+
+  \item 以下两个图分别代表交易信号和每次交易收益。红色代表做多价差，绿色代表做空价差。
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{IC上效果:训练样本}
+\includegraphics<1>[width=\textwidth]{IctrainSignal.jpg}
+\end{frame}
+
+\begin{frame}{IC上效果:训练样本}
+\includegraphics<1>[width=\textwidth]{IctrainReturn.jpg}
+\end{frame}
+
+\begin{frame}{IC上效果:训练样本}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IC上效果:训练样本}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数
+ & 644.0 & 618.0 & 1262.0\\每次收益 & 0.005321 & 0.005802 & 0.005557\\ 盈利次数& 560.0 & 563.0 & 1123.0\\标准差& 0.004771 & 0.004895 & 0.004836\\偏度&  0.1414 & 0.1633 & 0.1559\\峰度& 4.175 & 5.779 & 4.986 
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{IC上效果:测试样本}
+\includegraphics<1>[width=\textwidth]{IctestSignal.jpg}
+\end{frame}
+
+\begin{frame}{IC上效果:测试样本}
+\includegraphics<1>[width=\textwidth]{IctestReturn.jpg}
+\end{frame}
+
+\begin{frame}{IC上效果:测试样本}
+\begin{table}
+\extrarowheight=7pt
+\rowcolors{1}{white}{yellow}
+\caption{IC上效果:测试样本}
+\begin{tabular}{llll}
+~&做多&做空&合计\\
+
+产生信号次数 & 514.0 & 226.0 & 740.0\\ 每次收益 & 0.004419 & 0.006122 & 0.004939\\盈利次数& 444.0 & 205.0 & 649.0\\ 标准差& 0.004575 & 0.005011 & 0.004774\\ 偏度& 0.5551 & 0.04084 & 0.3982\\ 峰度&  5.188 & 4.036 & 4.541
+>> 
+
+\end{tabular}
+\end{table}
+\end{frame}
 %
 %\begin{frame}{三种色调的文本模块}
 %\begin{block}{基本性质}

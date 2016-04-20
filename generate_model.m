@@ -1,6 +1,6 @@
-function [M,M0,struct_a]=generate_model(tag,x,benchmark,upper_critical)
+function [M,M0,struct_a]=generate_model(tag,x,benchmark,upper_critical,regulizer_rate)
     n=size(tag,1);
-    [~,~,M0,struct_a,~]=testFeature(tag(1:n/2),x(1:n/2,:),benchmark,upper_critical,1,n/2);
+    [~,~,M0,struct_a,~]=testFeature(tag(1:n/2),x(1:n/2,:),benchmark,upper_critical,1,n/2,regulizer_rate);
     u=n/2+1;
     v=n;
     n=v-u+1;

@@ -1,4 +1,4 @@
-function f=feature_generate(tag,x,t);
+function f=feature_generate(tag,x);
 s(:,1)=feature_ma(x,10);
 s(:,2)=feature_ma(x,60);
 s(:,3)=feature_ma(x,240);
@@ -15,5 +15,16 @@ s(:,13)=feature_bias(x,240);
 s(:,14)=feature_bias(x,1200);
 s(:,15)=feature_bias(x,6000);
 
-t=reshape(t,size(t,1),size(t,2)*size(t,3));
+s(:,16)=feature_delta(x,10);
+s(:,17)=feature_delta(x,60);
+s(:,18)=feature_delta(x,240);
+s(:,19)=feature_delta(x,1200);
+s(:,20)=feature_delta(x,6000);
+
+s(:,21)=feature_rsi(x,10);
+s(:,22)=feature_rsi(x,60);
+s(:,23)=feature_rsi(x,240);
+s(:,24)=feature_rsi(x,1200);
+s(:,25)=feature_rsi(x,6000);
+
 f=[s];

@@ -1,4 +1,4 @@
-function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,benchmark,upper_critical,u,v)
+function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,benchmark,upper_critical,u,v,regulizer_rate)
     tag=tag(u:v);
     x=x(u:v,:);
     n=size(tag,1);
@@ -7,7 +7,7 @@ function [B,S,M,struct_a,validation_odd]=testFeature(tag,x,benchmark,upper_criti
     
     [Z,MU,SIGMA] = zscore(x); 
     %[B,BINT,R,RINT,STATS] = regress(tag,[Z,ones(n,1)]);
-     [B,S] = lasso([Z,ones(n,1)],tag,'Lambda',0.0001);
+     [B,S] = lasso([Z,ones(n,1)],tag,'Lambda',regulizer_rate);
     pred=([Z,ones(n,1)]*B);
     
 
