@@ -21,10 +21,4 @@ function MAValue=MA(Price,Length)
 %----------------------------------输出----------------------------------
 %MAValue：简单移动平均值
 
-MAValue=zeros(length(Price),1);
-for i=Length:length(Price)
-    MAValue(i)=sum(Price(i-Length+1:i))/Length;
-end
-MAValue(1:Length-1)=Price(1:Length-1);
-end
-
+MAValue=feature_ma(Price,Length);

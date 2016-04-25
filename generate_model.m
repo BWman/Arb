@@ -1,8 +1,9 @@
-function [M,M0,struct_a]=generate_model(tag,x,benchmark,upper_critical,regulizer_rate)
+function [M,M0,struct_a,jgd]=generate_model(tag,x,benchmark,upper_critical,regulizer_rate,s,v1,v2)
     n=size(tag,1);
     [~,~,M0,struct_a,~]=testFeature(tag(1:n/2),x(1:n/2,:),benchmark,upper_critical,1,n/2,regulizer_rate);
     u=n/2+1;
     v=n;
+    s=s(u:v,:,:);
     n=v-u+1;
     tag=tag(u:v);
     x=[x(u:v,:)];
@@ -38,7 +39,7 @@ function [M,M0,struct_a]=generate_model(tag,x,benchmark,upper_critical,regulizer
     short_count=size(short,1);
     tot=[long;short];
    
-    signal=0.05*signal(~isnan(signal));
+    signal=signal(~isnan(signal));
     profitlong=sum(long>0);
     profitshort=sum(short>0);
     jpg=plot(idx,benchmark(u:v),idx,(signal<0).*benchmark(u:v),'.g',idx,(signal>0).*benchmark(u:v),'.r');
@@ -63,6 +64,27 @@ function [M,M0,struct_a]=generate_model(tag,x,benchmark,upper_critical,regulizer
     M(6,1)=kurtosis(long,0);
     M(6,2)=kurtosis(short,0);
     M(6,3)=kurtosis(tot,0);
+    pl=linspace(0,0,n)';
+    eps=2;
+    for i=2:n
+        pl(i)=pl(i-1)+signal(i)*tag(i)-eps*(signal(i)~=0);
+    end
+    uu=[s(31:n,7,v1);s(n-29:n,7,v1)];
+    vv=[s(31:n,7,v2);s(n-29:n,7,v2)];
+    jgd(:,1)=s(:,1,v1);
+    jgd(:,2)=s(:,3,v1);
+    jgd(:,3)=s(:,2,v1);
+    jgd(:,4)=s(:,7,v1);
+    jgd(:,5)=s(:,2,v2);
+    jgd(:,6)=s(:,7,v2);
+    jgd(:,7)=signal;
+    jgd(:,8)=tag;
+    jgd(:,9)=uu;
+    jgd(:,10)=vv;
+    jgd=jgd(jgd(:,7)~=0,:);
+    plot(idx,pl);
+    struct_a.pl=pl;
+        
   %  struct_a.BINT=BINT;
 
     
