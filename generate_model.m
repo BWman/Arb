@@ -1,10 +1,13 @@
-function [M,M0,struct_a,jgd]=generate_model(tag,x,benchmark,upper_critical,regulizer_rate,s,v1,v2)
+function [M,M0,struct_a,jgd,sharpe]=generate_model(tag,x,benchmark,upper_critical,regulizer_rate,s,v1,v2)
     n=size(tag,1);
+   
     [~,~,M0,struct_a,~]=testFeature(tag(1:n/2),x(1:n/2,:),benchmark,upper_critical,1,n/2,regulizer_rate);
     u=n/2+1;
     v=n;
     s=s(u:v,:,:);
     n=v-u+1;
+    tag(tag>100)=100;
+    tag(tag<-100)=-100;
     tag=tag(u:v);
     x=[x(u:v,:)];
     
@@ -23,6 +26,7 @@ function [M,M0,struct_a,jgd]=generate_model(tag,x,benchmark,upper_critical,regul
     %[B,BINT,R,RINT,STATS] = regress(tag,[x,ones(n,1)]);
     %pred=([x,ones(n,1)]*B);
     signal=-(pred<lower_critical)+(pred>upper_critical);
+    signal=signal.*(s(:,3,1)>900).*(s(:,3,1)<1430);
     for i=1:size(signal,1)-1
         if signal(n-i+1)~=0 && signal(n-i)~=0
             signal(n-i+1)=0;
@@ -40,6 +44,7 @@ function [M,M0,struct_a,jgd]=generate_model(tag,x,benchmark,upper_critical,regul
     tot=[long;short];
    
     signal=signal(~isnan(signal));
+    
     profitlong=sum(long>0);
     profitshort=sum(short>0);
     jpg=plot(idx,benchmark(u:v),idx,(signal<0).*benchmark(u:v),'.g',idx,(signal>0).*benchmark(u:v),'.r');
@@ -65,10 +70,13 @@ function [M,M0,struct_a,jgd]=generate_model(tag,x,benchmark,upper_critical,regul
     M(6,2)=kurtosis(short,0);
     M(6,3)=kurtosis(tot,0);
     pl=linspace(0,0,n)';
-    eps=2;
+    eps=0.0013;
     for i=2:n
         pl(i)=pl(i-1)+signal(i)*tag(i)-eps*(signal(i)~=0);
     end
+    
+    t=[floor(s(:,1,1)/10000),  floor((s(:,1,1)-floor(s(:,1,1)/10000)*10000)/100),       mod(s(:,1,1),100)];
+    t=datenum(t);
     uu=[s(31:n,7,v1);s(n-29:n,7,v1)];
     vv=[s(31:n,7,v2);s(n-29:n,7,v2)];
     jgd(:,1)=s(:,1,v1);
@@ -81,9 +89,27 @@ function [M,M0,struct_a,jgd]=generate_model(tag,x,benchmark,upper_critical,regul
     jgd(:,8)=tag;
     jgd(:,9)=uu;
     jgd(:,10)=vv;
+    jgd(:,11)=t;
     jgd=jgd(jgd(:,7)~=0,:);
     plot(idx,pl);
+    saveas(gcf,['NetValue_Signal.jpg'],'jpg');
     struct_a.pl=pl;
+    
+    
+    startDay=t(1);
+    endDay=t(n);
+    
+    
+    for i=startDay:endDay   
+       netValue_d(i-startDay+1,1)=sum((jgd(:,11)==i).*(jgd(:,8).*jgd(:,7)-eps));
+    
+    end
+    for i=startDay:endDay
+       netValue_d(i-startDay+1,2)=sum(netValue_d(1:i-startDay+1,1));
+       netValue_d(i-startDay+1,3)=sum(jgd(:,11)==i);
+    end
+    struct_a.netValue_d=netValue_d;
+    sharpe= netValue_d(endDay-startDay+1,2)/sqrt(var(netValue_d(1:endDay-startDay+1,1)))/16;
         
   %  struct_a.BINT=BINT;
 
