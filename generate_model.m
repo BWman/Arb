@@ -26,7 +26,7 @@ function [M,M0,struct_a,jgd,sharpe]=generate_model(tag,x,benchmark,upper_critica
     %[B,BINT,R,RINT,STATS] = regress(tag,[x,ones(n,1)]);
     %pred=([x,ones(n,1)]*B);
     signal=-(pred<lower_critical)+(pred>upper_critical);
-    signal=signal.*(s(:,3,1)>900).*(s(:,3,1)<1430);
+    %signal=signal.*(s(:,3,1)>900).*(s(:,3,1)<1430);
     for i=1:size(signal,1)-1
         if signal(n-i+1)~=0 && signal(n-i)~=0
             signal(n-i+1)=0;
@@ -70,7 +70,7 @@ function [M,M0,struct_a,jgd,sharpe]=generate_model(tag,x,benchmark,upper_critica
     M(6,2)=kurtosis(short,0);
     M(6,3)=kurtosis(tot,0);
     pl=linspace(0,0,n)';
-    eps=0.0013;
+    eps=0.0006;
     for i=2:n
         pl(i)=pl(i-1)+signal(i)*tag(i)-eps*(signal(i)~=0);
     end
@@ -109,7 +109,7 @@ function [M,M0,struct_a,jgd,sharpe]=generate_model(tag,x,benchmark,upper_critica
        netValue_d(i-startDay+1,3)=sum(jgd(:,11)==i);
     end
     struct_a.netValue_d=netValue_d;
-    sharpe= netValue_d(endDay-startDay+1,2)/sqrt(var(netValue_d(1:endDay-startDay+1,1)))/16;
+    %sharpe= netValue_d(endDay-startDay+1,2)/sqrt(var(netValue_d(1:endDay-startDay+1,1)))/16;
         
   %  struct_a.BINT=BINT;
 
